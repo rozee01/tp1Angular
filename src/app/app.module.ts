@@ -52,6 +52,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { AutocompleteComponent } from "./cv/autocomplete/autocomplete.component";
 import { SliderComponent } from "./rxjs/slider/slider.component";
 import { TTCComponent } from "./ttc/ttc.component";
+import { ArcEnCielDirective } from "./tp/arc-en-ciel.directive";
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { TTCComponent } from "./ttc/ttc.component";
     MiniWordComponent,
     NgclassComponent,
     HighlightDirective,
+    ArcEnCielDirective,
     Btc2usdPipe,
     TodoComponent,
     NavbarComponent,

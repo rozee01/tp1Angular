@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostBinding, HostListener, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appArcEnCiel]',
+  selector: 'input[appArcEnCiel]',
 })
 export class ArcEnCielDirective implements OnInit{
   private colors: string[] = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#F3FF33', '#33FFF5', '#FF9133'];
