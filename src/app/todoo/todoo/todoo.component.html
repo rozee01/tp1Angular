@@ -9,29 +9,41 @@
       <div class="card bg-light w-25 p-2">
         <h5 class="text-center">Waiting</h5>
         <ul class="list-group">
-          <li *ngFor="let todo of waitingTodos()" class="list-group-item">
+          @for (todo of waitingTodos(); track $index){
+          <li class="list-group-item">
             {{ todo.name }} - {{ todo.content }}
             <button class="btn btn-warning btn-sm float-end" (click)="changeStatus(todo, 'in-progress')">In Progress</button>
-          </li>
+          </li>}
+          @empty {
+            <li class="list-group-item">No waiting todos</li>
+          }
         </ul>
       </div>
   
       <div class="card bg-warning w-25 p-2 mx-2">
         <h5 class="text-center">In Progress Todos</h5>
         <ul class="list-group">
-          <li *ngFor="let todo of inProgressTodos()" class="list-group-item">
-            {{ todo.name }} - {{ todo.content }}
-            <button class="btn btn-success btn-sm float-end" (click)="changeStatus(todo, 'done')">Done</button>
-          </li>
+          @for (todo of inProgressTodos(); track $index){
+            <li class="list-group-item">
+              {{ todo.name }} - {{ todo.content }}
+              <button class="btn btn-success btn-sm float-end" (click)="changeStatus(todo, 'done')">Done</button>
+          </li>}
+          @empty {
+            <li class="list-group-item">No todos in progress</li>
+          }
         </ul>
       </div>
   
       <div class="card bg-success w-25 p-2">
         <h5 class="text-center">Done Todos</h5>
         <ul class="list-group">
-          <li *ngFor="let todo of doneTodos()" class="list-group-item">
+          @for (todo of doneTodos();track $index){
+          <li class="list-group-item">
             {{ todo.name }} - {{ todo.content }}
-          </li>
+          </li>}
+          @empty {
+            <li class="list-group-item">No done todos</li>
+          }
         </ul>
       </div>
     </div>
