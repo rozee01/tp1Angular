@@ -3,4 +3,5 @@ export interface LoginResponseDto {
   ttl: number;
   created: Date;
   userId: number;
+  email : string;
 }

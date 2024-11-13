@@ -21,7 +21,7 @@ export class DetailsCvComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private toastr = inject(ToastrService);
   authService = inject(AuthService);
-
+  isAuthenticated = this.authService.isAuthenticated;
   cv: Cv | null = null;
 
   ngOnInit() {

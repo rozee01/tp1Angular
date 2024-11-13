@@ -16,10 +16,12 @@ import { APP_ROUTES } from '../../../config/routes.config';
 ],
 })
 export class NavbarComponent {
-  authService = inject(AuthService);
+  //authService = inject(AuthService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
-
+  private authService = inject(AuthService);
+  isAuthenticated = this.authService.isAuthenticated;
+  userEmail = this.authService.userEmail;
 
   logout() {
     this.authService.logout();

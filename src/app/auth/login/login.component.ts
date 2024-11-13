@@ -23,6 +23,11 @@ export class LoginComponent {
     this.authService.login(credentials).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.id);
+        localStorage.setItem('userId', String(response.userId));
+        localStorage.setItem('userEmail', response.email);
+        this.authService.isAuthenticated.set(true);
+        this.authService.userId.set(response.userId);
+        this.authService.userEmail.set(response.email);
         this.toastr.success(`Bienvenu chez vous :)`);
         this.router.navigate([APP_ROUTES.cv]);
       },
