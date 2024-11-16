@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,13 +22,14 @@ export class DetailsCvComponent implements OnInit {
   private toastr = inject(ToastrService);
   authService = inject(AuthService);
   isAuthenticated = this.authService.isAuthenticated;
-  cv: Cv | null = null;
+  //cv: Cv | null = null;
+  cv=signal<Cv>(new Cv());
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
     this.cvService.getCvById(+id).subscribe({
         next: (cv) => {
-          this.cv = cv;
+          this.cv.set(cv);
         },
         error: (e) => {
           this.router.navigate([APP_ROUTES.cv]);
