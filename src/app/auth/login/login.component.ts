@@ -5,6 +5,7 @@ import { ROUTES, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from '../../../config/routes.config';
 import { FormsModule } from '@angular/forms';
+import { CONSTANTES } from 'src/config/const.config';
 
 
 @Component({
@@ -22,12 +23,12 @@ export class LoginComponent {
   login(credentials: CredentialsDto) {
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.id);
-        localStorage.setItem('userId', String(response.userId));
-        localStorage.setItem('userEmail', response.email);
+        localStorage.setItem(CONSTANTES.token, response.id);
+        localStorage.setItem(CONSTANTES.userId, String(response.userId));
+        localStorage.setItem(CONSTANTES.userEmail, credentials.email);
         this.authService.isAuthenticated.set(true);
         this.authService.userId.set(response.userId);
-        this.authService.userEmail.set(response.email);
+        this.authService.userEmail.set(credentials.email);
         this.toastr.success(`Bienvenu chez vous :)`);
         this.router.navigate([APP_ROUTES.cv]);
       },

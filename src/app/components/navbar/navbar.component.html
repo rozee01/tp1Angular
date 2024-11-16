@@ -76,6 +76,9 @@
                             >
                           }
                           @if (isAuthenticated()) {
+                            <span>
+                              Welcome {{this.userEmail()}}
+                            </span>
                             <a
                               class="nav-link"
                               (click)="logout()"
