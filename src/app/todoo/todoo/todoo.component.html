@@ -40,7 +40,8 @@
           @for (todo of doneTodos();track $index){
           <li class="list-group-item">
             {{ todo.name }} - {{ todo.content }}
-          </li>}
+          </li>
+          <button class="btn btn-danger btn-sm float-end" (click)="deleteTodo(todo)">Delete</button>}
           @empty {
             <li class="list-group-item">No done todos</li>
           }

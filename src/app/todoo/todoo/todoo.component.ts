@@ -26,6 +26,9 @@ export class TodooComponent {
     this.name.set('');
     this.content.set('');
   }
+  deleteTodo(todo: Todoo){
+    this.todoService.deleteTodo(todo.id);
+  }
 
   changeStatus(todo: Todoo, newStatus: TodooStatus) {
     this.todoService.updateTodoStatus(todo.id, newStatus);
