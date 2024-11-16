@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from '../../../config/routes.config';
 import { AuthService } from '../../auth/services/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of, pipe } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Component({
@@ -35,16 +35,16 @@ export class DetailsCvComponent implements OnInit {
       ));
   }
   deleteCv(cv: Cv) {
-    this.cvService.deleteCvById(cv.id).subscribe({
-      next: () => {
-        this.toastr.success(`${cv.name} supprimé avec succès`);
-        this.router.navigate([APP_ROUTES.cv]);
-      },
-      error: () => {
+    this.cvService.deleteCvById(cv.id).pipe(
+      catchError(()=>{
         this.toastr.error(
           `Problème avec le serveur veuillez contacter l'admin`
         );
-      },
-    });
+        return of(null);
+      })
+    ).subscribe(() => {
+        this.toastr.success(`${cv.name} supprimé avec succès`);
+        this.router.navigate([APP_ROUTES.cv]);
+      });
   }
 }
